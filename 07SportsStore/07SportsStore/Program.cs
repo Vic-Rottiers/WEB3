@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _07SportsStore.Data;
+using System;
 
 namespace _07SportsStore
 {
@@ -6,7 +7,12 @@ namespace _07SportsStore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                Console.WriteLine("Database created");
+            }
         }
     }
 }
